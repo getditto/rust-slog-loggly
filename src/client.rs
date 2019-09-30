@@ -10,7 +10,7 @@ use futures::{Future, Poll, Stream};
 use hyper::client::HttpConnector;
 use hyper::{Client, Request, Uri};
 
-use hyper_tls::HttpsConnector;
+use hyper_rustls::HttpsConnector;
 
 use tokio_timer::Timeout;
 
@@ -74,9 +74,7 @@ impl LogglyClientBuilder {
         if let Some(c) = self.connector {
             connector = c;
         } else {
-            connector = HttpsConnector::new(1).map_err(|err| {
-                Error::from(format!("unable to create a HTTPS connector: {}", err))
-            })?;
+            connector = HttpsConnector::new(1);
         }
 
         let client = Client::builder().build(connector);

@@ -135,7 +135,7 @@ use chrono::{SecondsFormat, Utc};
 
 use hyper::client::HttpConnector;
 
-use hyper_tls::HttpsConnector;
+use hyper_rustls::HttpsConnector;
 
 use slog::Serializer as SlogSerializer;
 use slog::{Drain, OwnedKVList, Record, KV};
